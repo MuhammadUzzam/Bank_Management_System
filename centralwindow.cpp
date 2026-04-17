@@ -165,10 +165,26 @@ void Centralwindow::on_withdrawbtn_clicked()
 
         QSqlQuery query;
 
-        // 🔥 UPDATE balance
-        query.prepare("UPDATE bank SET balance = :balance WHERE email = :email");
-        query.bindValue(":balance", newBalance);
+        // 🔥 STEP 1: Get account_id
+        query.prepare(
+            "SELECT a.account_id "
+            "FROM customer c "
+            "JOIN account a ON c.customer_id = a.customer_id "
+            "WHERE c.email = :email"
+            );
         query.bindValue(":email", userEmail);
+
+        if (!query.exec() || !query.next()) {
+            QMessageBox::critical(this, "Error", "Account not found");
+            return;
+        }
+
+        int account_id = query.value(0).toInt();
+
+        // 🔥 STEP 2: Update balance
+        query.prepare("UPDATE account SET balance = :balance WHERE account_id = :id");
+        query.bindValue(":balance", newBalance);
+        query.bindValue(":id", account_id);
 
         if (query.exec())
         {
@@ -177,14 +193,19 @@ void Centralwindow::on_withdrawbtn_clicked()
             QMessageBox::information(this, "Success",
                                      "Withdrawal successful (Fee: 25 PKR)");
 
-            // 🔥 Insert transaction
-            query.prepare("INSERT INTO transactions (user_email, type, amount) VALUES (:email, :type, :amount)");
-            query.bindValue(":email", userEmail);
-            query.bindValue(":type", "Withdrawal");
-            query.bindValue(":amount", withdrawAmount);
+            // 🔥 STEP 3: Insert transaction
+            QSqlQuery transQuery;
+            transQuery.prepare(
+                "INSERT INTO transactions (transaction_type, amount, transaction_date, account_id) "
+                "VALUES (:type, :amount, NOW(), :id)"
+                );
 
-            if (!query.exec()) {
-                qDebug() << "Withdraw transaction failed:" << query.lastError().text();
+            transQuery.bindValue(":type", "Withdrawal");
+            transQuery.bindValue(":amount", withdrawAmount);
+            transQuery.bindValue(":id", account_id);
+
+            if (!transQuery.exec()) {
+                qDebug() << "Withdraw transaction failed:" << transQuery.lastError().text();
             }
         }
         else
@@ -223,8 +244,29 @@ void Centralwindow::on_transferbtn_clicked()
 
         QSqlQuery query;
 
-        // 🔥 Check recipient
-        query.prepare("SELECT balance FROM bank WHERE email = :email");
+        // 🔥 STEP 1: Get sender account_id
+        query.prepare(
+            "SELECT a.account_id "
+            "FROM customer c "
+            "JOIN account a ON c.customer_id = a.customer_id "
+            "WHERE c.email = :email"
+            );
+        query.bindValue(":email", userEmail);
+
+        if (!query.exec() || !query.next()) {
+            QMessageBox::critical(this, "Error", "Sender account not found");
+            return;
+        }
+
+        int senderAccId = query.value(0).toInt();
+
+        // 🔥 STEP 2: Get receiver account_id + balance
+        query.prepare(
+            "SELECT a.account_id, a.balance "
+            "FROM customer c "
+            "JOIN account a ON c.customer_id = a.customer_id "
+            "WHERE c.email = :email"
+            );
         query.bindValue(":email", recipientEmail);
 
         if (!query.exec() || !query.next()) {
@@ -232,46 +274,56 @@ void Centralwindow::on_transferbtn_clicked()
             return;
         }
 
-        double recipientBalance = query.value(0).toDouble();
+        int receiverAccId = query.value(0).toInt();
+        double receiverBalance = query.value(1).toDouble();
 
-        // 🔥 Start transaction
+        // 🔥 STEP 3: Start DB transaction
         QSqlDatabase::database().transaction();
 
-        // Sender update
+        // 🔥 STEP 4: Deduct from sender
         QSqlQuery senderQuery;
-        senderQuery.prepare("UPDATE bank SET balance = :balance WHERE email = :email");
+        senderQuery.prepare("UPDATE account SET balance = :balance WHERE account_id = :id");
         senderQuery.bindValue(":balance", currentBalance - transferAmount);
-        senderQuery.bindValue(":email", userEmail);
+        senderQuery.bindValue(":id", senderAccId);
 
-        // Recipient update
-        QSqlQuery recipientQuery;
-        recipientQuery.prepare("UPDATE bank SET balance = :balance WHERE email = :email");
-        recipientQuery.bindValue(":balance", recipientBalance + transferAmount);
-        recipientQuery.bindValue(":email", recipientEmail);
+        // 🔥 STEP 5: Add to receiver
+        QSqlQuery receiverQuery;
+        receiverQuery.prepare("UPDATE account SET balance = :balance WHERE account_id = :id");
+        receiverQuery.bindValue(":balance", receiverBalance + transferAmount);
+        receiverQuery.bindValue(":id", receiverAccId);
 
-        if (senderQuery.exec() && recipientQuery.exec())
+        if (senderQuery.exec() && receiverQuery.exec())
         {
             QSqlDatabase::database().commit();
 
+            // ✅ Update UI
             ui->balance_label->setText("Balance: " +
                                        QString::number(currentBalance - transferAmount, 'f', 2));
 
             QMessageBox::information(this, "Success", "Transfer completed");
 
+            // 🔥 STEP 6: Log transactions
+
             QSqlQuery logQuery;
 
             // Sender log
-            logQuery.prepare("INSERT INTO transactions (user_email, type, amount) VALUES (:email, :type, :amount)");
-            logQuery.bindValue(":email", userEmail);
+            logQuery.prepare(
+                "INSERT INTO transactions (transaction_type, amount, transaction_date, account_id) "
+                "VALUES (:type, :amount, NOW(), :id)"
+                );
             logQuery.bindValue(":type", "Transfer Sent");
             logQuery.bindValue(":amount", -transferAmount);
+            logQuery.bindValue(":id", senderAccId);
             logQuery.exec();
 
             // Receiver log
-            logQuery.prepare("INSERT INTO transactions (user_email, type, amount) VALUES (:email, :type, :amount)");
-            logQuery.bindValue(":email", recipientEmail);
+            logQuery.prepare(
+                "INSERT INTO transactions (transaction_type, amount, transaction_date, account_id) "
+                "VALUES (:type, :amount, NOW(), :id)"
+                );
             logQuery.bindValue(":type", "Transfer Received");
             logQuery.bindValue(":amount", transferAmount);
+            logQuery.bindValue(":id", receiverAccId);
             logQuery.exec();
         }
         else

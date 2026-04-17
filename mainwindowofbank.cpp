@@ -7,7 +7,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
-#include <QDebug>  // Include for debugging
+// Include for debugging
+#include <QDebug>
 MainWindowofBANK::MainWindowofBANK(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindowofBANK)
@@ -28,20 +29,18 @@ MainWindowofBANK::~MainWindowofBANK()
 }
 void MainWindowofBANK::on_signup_btn_clicked()
 {
-    hide();
+    close();
     sign = new signupwindow(this);
     sign->show();
 }
 void MainWindowofBANK::on_login_btn_clicked()
 {
-    QString name = ui->username_input->text();
     QString email = ui->gmail_input->text();
     QString pin = ui->password_input->text();
     QString errorMsg;
-    if (name.isEmpty()) errorMsg += "Username, ";
+    // Neeche just fancy way hai error show krane ka
     if (email.isEmpty()) errorMsg += "Email, ";
     if (pin.isEmpty()) errorMsg += "Password, ";
-
     if (!errorMsg.isEmpty()) {
         errorMsg.chop(2); // Remove last comma and space
         QMessageBox::critical(this, "Logic Error", "Please enter " + errorMsg + ".");
@@ -50,8 +49,8 @@ void MainWindowofBANK::on_login_btn_clicked()
     // Ensure the database is open before executing queries
     QSqlDatabase db = QSqlDatabase::database();
     if (!db.isOpen()) {
-        QMessageBox::critical(this, "Database Error", "Database connection is not open.");
-        qDebug() << "Database is not open.";
+        QMessageBox::critical(this, "Database Error", "Unable to connect to database.");
+        qDebug() << "Database Error:" << db.lastError().text();
         return;
     }
     QSqlQuery query;
@@ -70,18 +69,15 @@ void MainWindowofBANK::on_login_btn_clicked()
         return;
     }
     if(query.next()) {
-        QString retrievedName = query.value("first_name").toString() + " " +
-                                query.value("last_name").toString();
+        QString retrievedName = query.value("first_name").toString() + " " + query.value("last_name").toString();
         QString retrievedEmail = query.value("email").toString();
         QString retrievedAccountType = query.value("account_type").toString();
         double retrievedBalance = query.value("balance").toDouble();
         QString retrievedAccNumber = query.value("account_number").toString();
         QMessageBox::information(this, "Login Successful", "Welcome, " + retrievedName);
-        hide();
+        close();
         central = new Centralwindow(this);
-        central->setUserDetails(retrievedName, retrievedEmail,
-                                retrievedAccountType, retrievedBalance,
-                                retrievedAccNumber);
+        central->setUserDetails(retrievedName, retrievedEmail,retrievedAccountType, retrievedBalance,retrievedAccNumber);
         central->show();
     }
     else

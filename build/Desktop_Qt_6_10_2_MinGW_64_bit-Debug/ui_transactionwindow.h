@@ -65,11 +65,32 @@ public:
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft Sans Serif")});
         transaction_table->setFont(font1);
-        transaction_table->setStyleSheet(QString::fromUtf8("QTableWidget { background-color: #f8f9fa; gridline-color: #dee2e6; font-size: 12px; }\n"
-"QHeaderView::section { background-color: #007bff; color: white; padding: 5px; font-weight: bold; border: 1px solid #dee2e6; }\n"
-"QTableWidget::item { padding: 5px; }\n"
-"QTableWidget::item:selected { background-color: #cce5ff; }\n"
-""));
+        transaction_table->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
+"    background-color: #f8f9fa;\n"
+"    gridline-color: #dee2e6;\n"
+"    font-size: 13px;\n"
+"    color: #212529;              /* \360\237\224\245 FIX: text dark */\n"
+"    selection-background-color: #cce5ff;\n"
+"    selection-color: #000000;    /* \360\237\224\245 selected text visible */\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #007bff;\n"
+"    color: white;\n"
+"    padding: 6px;\n"
+"    font-weight: bold;\n"
+"    border: 1px solid #dee2e6;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"    color: #212529;              /* \360\237\224\245 ensure text dark */\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #cce5ff;\n"
+"    color: #000000;              /* \360\237\224\245 readable on blue */\n"
+"}"));
         transaction_table->setAlternatingRowColors(false);
         transaction_table->setColumnCount(3);
         transaction_table->horizontalHeader()->setCascadingSectionResizes(false);
@@ -89,7 +110,7 @@ public:
         TransactionWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(TransactionWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 723, 21));
+        menubar->setGeometry(QRect(0, 0, 723, 17));
         TransactionWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(TransactionWindow);
         statusbar->setObjectName("statusbar");

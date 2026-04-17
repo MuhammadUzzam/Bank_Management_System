@@ -34,14 +34,12 @@ public:
     QLabel *label_7;
     QPushButton *signup_btn;
     QPushButton *login_btn;
-    QLineEdit *username_input;
     QLineEdit *gmail_input;
     QLineEdit *password_input;
     QLabel *label_11;
     QLabel *label_12;
     QLabel *label_13;
     QLabel *label_8;
-    QLabel *label_9;
     QLabel *label_10;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -148,32 +146,11 @@ public:
 "QPushButton:pressed{\n"
 "background-color:rgb(31, 97, 141);\n"
 "}"));
-        username_input = new QLineEdit(centralwidget);
-        username_input->setObjectName("username_input");
-        username_input->setGeometry(QRect(260, 160, 371, 51));
-        QFont font2;
-        font2.setPointSize(14);
-        username_input->setFont(font2);
-        username_input->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
-"\n"
-"background-color: rgb(255, 255, 255);\n"
-"color:rgb(43, 84, 125);\n"
-"border:2px solid rgb(43, 84, 125);\n"
-"padding:5px;\n"
-"padding-left:45px;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid rgb(29, 61, 92);\n"
-"background-color:rgb(226, 230, 235);\n"
-"}\n"
-"QLineEdit:focus{\n"
-"border:2px solid rgb(0, 0, 119);\n"
-"background-color:white;\n"
-"outline:none;\n"
-"}"));
         gmail_input = new QLineEdit(centralwidget);
         gmail_input->setObjectName("gmail_input");
-        gmail_input->setGeometry(QRect(260, 230, 371, 51));
+        gmail_input->setGeometry(QRect(260, 160, 371, 51));
+        QFont font2;
+        font2.setPointSize(14);
         gmail_input->setFont(font2);
         gmail_input->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "\n"
@@ -194,7 +171,7 @@ public:
 "}"));
         password_input = new QLineEdit(centralwidget);
         password_input->setObjectName("password_input");
-        password_input->setGeometry(QRect(260, 300, 371, 51));
+        password_input->setGeometry(QRect(260, 230, 371, 51));
         password_input->setFont(font2);
         password_input->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "\n"
@@ -232,23 +209,15 @@ public:
         label_13->setScaledContents(true);
         label_8 = new QLabel(centralwidget);
         label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(270, 310, 31, 31));
+        label_8->setGeometry(QRect(270, 240, 31, 31));
         label_8->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	background-color: none;\n"
 "}"));
         label_8->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/padlock.png")));
         label_8->setScaledContents(true);
-        label_9 = new QLabel(centralwidget);
-        label_9->setObjectName("label_9");
-        label_9->setGeometry(QRect(270, 170, 31, 31));
-        label_9->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"	background-color: none;\n"
-"}"));
-        label_9->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/profile.png")));
-        label_9->setScaledContents(true);
         label_10 = new QLabel(centralwidget);
         label_10->setObjectName("label_10");
-        label_10->setGeometry(QRect(270, 240, 31, 31));
+        label_10->setGeometry(QRect(270, 170, 31, 31));
         label_10->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	background-color: none;\n"
 "}"));
@@ -266,17 +235,15 @@ public:
         label_2->raise();
         label_11->raise();
         label_12->raise();
-        username_input->raise();
         gmail_input->raise();
         label_3->raise();
         label_13->raise();
         label_8->raise();
-        label_9->raise();
         label_10->raise();
         menubar = new QMenuBar(MainWindowofBANK);
         menubar->setObjectName("menubar");
         menubar->setEnabled(false);
-        menubar->setGeometry(QRect(0, 0, 720, 21));
+        menubar->setGeometry(QRect(0, 0, 720, 17));
         MainWindowofBANK->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindowofBANK);
         statusbar->setObjectName("statusbar");
@@ -307,15 +274,12 @@ public:
         label_7->setText(QCoreApplication::translate("MainWindowofBANK", "Don't Have an account yet?", nullptr));
         signup_btn->setText(QCoreApplication::translate("MainWindowofBANK", "SIGN UP", nullptr));
         login_btn->setText(QCoreApplication::translate("MainWindowofBANK", "LOG IN", nullptr));
-        username_input->setText(QString());
-        username_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "username", nullptr));
-        gmail_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "gmail", nullptr));
-        password_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "password", nullptr));
+        gmail_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "Email", nullptr));
+        password_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "Password", nullptr));
         label_11->setText(QString());
         label_12->setText(QString());
         label_13->setText(QString());
         label_8->setText(QString());
-        label_9->setText(QString());
         label_10->setText(QString());
     } // retranslateUi
 

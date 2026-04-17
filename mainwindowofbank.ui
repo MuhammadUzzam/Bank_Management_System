@@ -235,7 +235,7 @@ background-color:rgb(31, 97, 141);
      <string>LOG IN</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="username_input">
+   <widget class="QLineEdit" name="gmail_input">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -268,14 +268,11 @@ background-color:white;
 outline:none;
 }</string>
     </property>
-    <property name="text">
-     <string/>
-    </property>
     <property name="placeholderText">
-     <string>username</string>
+     <string>Email</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="gmail_input">
+   <widget class="QLineEdit" name="password_input">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -308,48 +305,11 @@ background-color:white;
 outline:none;
 }</string>
     </property>
-    <property name="placeholderText">
-     <string>gmail</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="password_input">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>300</y>
-      <width>371</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-
-background-color: rgb(255, 255, 255);
-color:rgb(43, 84, 125);
-border:2px solid rgb(43, 84, 125);
-padding:5px;
-padding-left:45px;
-}
-QLineEdit:hover{
-border:2px solid rgb(29, 61, 92);
-background-color:rgb(226, 230, 235);
-}
-QLineEdit:focus{
-border:2px solid rgb(0, 0, 119);
-background-color:white;
-outline:none;
-}</string>
-    </property>
     <property name="echoMode">
      <enum>QLineEdit::EchoMode::Password</enum>
     </property>
     <property name="placeholderText">
-     <string>password</string>
+     <string>Password</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
@@ -416,7 +376,7 @@ outline:none;
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>310</y>
+      <y>240</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -436,35 +396,11 @@ outline:none;
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>170</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	background-color: none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images.qrc">:/new/prefix1/images/profile.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>240</y>
+      <y>170</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -495,12 +431,10 @@ outline:none;
    <zorder>label_2</zorder>
    <zorder>label_11</zorder>
    <zorder>label_12</zorder>
-   <zorder>username_input</zorder>
    <zorder>gmail_input</zorder>
    <zorder>label_3</zorder>
    <zorder>label_13</zorder>
    <zorder>label_8</zorder>
-   <zorder>label_9</zorder>
    <zorder>label_10</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -512,7 +446,7 @@ outline:none;
      <x>0</x>
      <y>0</y>
      <width>720</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

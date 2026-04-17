@@ -57,11 +57,32 @@ color:#2b547d;}</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">QTableWidget { background-color: #f8f9fa; gridline-color: #dee2e6; font-size: 12px; }
-QHeaderView::section { background-color: #007bff; color: white; padding: 5px; font-weight: bold; border: 1px solid #dee2e6; }
-QTableWidget::item { padding: 5px; }
-QTableWidget::item:selected { background-color: #cce5ff; }
-</string>
+     <string notr="true">QTableWidget {
+    background-color: #f8f9fa;
+    gridline-color: #dee2e6;
+    font-size: 13px;
+    color: #212529;              /* 🔥 FIX: text dark */
+    selection-background-color: #cce5ff;
+    selection-color: #000000;    /* 🔥 selected text visible */
+}
+
+QHeaderView::section {
+    background-color: #007bff;
+    color: white;
+    padding: 6px;
+    font-weight: bold;
+    border: 1px solid #dee2e6;
+}
+
+QTableWidget::item {
+    padding: 6px;
+    color: #212529;              /* 🔥 ensure text dark */
+}
+
+QTableWidget::item:selected {
+    background-color: #cce5ff;
+    color: #000000;              /* 🔥 readable on blue */
+}</string>
     </property>
     <property name="alternatingRowColors">
      <bool>false</bool>
@@ -138,7 +159,7 @@ QTableWidget::item:selected { background-color: #cce5ff; }
      <x>0</x>
      <y>0</y>
      <width>723</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

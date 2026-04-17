@@ -682,7 +682,7 @@ outline:none;
      <string/>
     </property>
     <property name="placeholderText">
-     <string>Cnic</string>
+     <string>CNIC</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="street">
@@ -868,6 +868,9 @@ outline:none;
       <width>21</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:none;</string>
     </property>
     <property name="text">
      <string/>

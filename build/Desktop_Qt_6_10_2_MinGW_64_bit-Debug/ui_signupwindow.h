@@ -453,6 +453,7 @@ public:
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(390, 150, 21, 21));
+        label_2->setStyleSheet(QString::fromUtf8("background-color:none;"));
         label_2->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/signup_cnic_icon.png")));
         label_2->setScaledContents(true);
         lastname = new QLineEdit(centralwidget);
@@ -558,7 +559,7 @@ public:
         postalcode->setPlaceholderText(QCoreApplication::translate("signupwindow", "Postal Code", nullptr));
         label_10->setText(QString());
         cnic->setText(QString());
-        cnic->setPlaceholderText(QCoreApplication::translate("signupwindow", "Cnic", nullptr));
+        cnic->setPlaceholderText(QCoreApplication::translate("signupwindow", "CNIC", nullptr));
         street->setText(QString());
         street->setPlaceholderText(QCoreApplication::translate("signupwindow", "Street", nullptr));
         label_11->setText(QString());

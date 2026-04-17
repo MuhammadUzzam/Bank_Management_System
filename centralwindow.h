@@ -15,7 +15,7 @@ class Centralwindow : public QMainWindow
 public:
     explicit Centralwindow(QWidget *parent = nullptr);
     ~Centralwindow();
-    // Setter function to set user details.
+    // Setter function to set user details in "Central Window".
     void setUserDetails(const QString &name, const QString &email, const QString &account, const double &balance, const QString &account_no);
 private slots:
     void on_depositbtn_clicked();

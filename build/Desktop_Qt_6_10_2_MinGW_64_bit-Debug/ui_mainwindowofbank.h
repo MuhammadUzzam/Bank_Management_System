@@ -11,11 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -25,22 +28,19 @@ class Ui_MainWindowofBANK
 {
 public:
     QWidget *centralwidget;
-    QLabel *label;
-    QLabel *label_3;
-    QLabel *label_4;
-    QLabel *label_2;
-    QLabel *label_5;
-    QLabel *label_6;
+    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout;
     QLabel *label_7;
-    QPushButton *signup_btn;
-    QPushButton *login_btn;
     QLineEdit *gmail_input;
+    QLabel *label_2;
+    QLabel *label_6;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer;
     QLineEdit *password_input;
-    QLabel *label_11;
-    QLabel *label_12;
-    QLabel *label_13;
-    QLabel *label_8;
-    QLabel *label_10;
+    QWidget *widget_2;
+    QPushButton *signup_btn;
+    QWidget *widget_3;
+    QPushButton *login_btn;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -59,45 +59,14 @@ public:
 "}"));
         centralwidget = new QWidget(MainWindowofBANK);
         centralwidget->setObjectName("centralwidget");
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(0, 0, 731, 521));
-        label->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:rgb(199, 201, 213);\n"
-"}"));
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(650, 0, 81, 81));
-        label_3->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:#2b547d;\n"
-"}"));
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(-10, 440, 81, 81));
-        label_4->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:#2b547d;\n"
-"}"));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(30, 20, 201, 471));
-        label_2->setStyleSheet(QString::fromUtf8("border-radius:10px;"));
-        label_5 = new QLabel(centralwidget);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(180, 20, 491, 471));
-        label_5->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:rgb(255, 255, 255);\n"
-"border-radius:10px;\n"
-"}"));
-        label_6 = new QLabel(centralwidget);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(250, 40, 371, 41));
-        label_6->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:white;\n"
-"font: 700 20pt \"Arial\";\n"
-"color:#2b547d;}"));
+        centralwidget->setStyleSheet(QString::fromUtf8("background-color:white;"));
+        horizontalLayout = new QHBoxLayout(centralwidget);
+        horizontalLayout->setObjectName("horizontalLayout");
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName("gridLayout");
+        gridLayout->setSizeConstraint(QLayout::SizeConstraint::SetDefaultConstraint);
         label_7 = new QLabel(centralwidget);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(270, 90, 201, 21));
         QFont font;
         font.setFamilies({QString::fromUtf8("Arial")});
         font.setPointSize(12);
@@ -109,49 +78,14 @@ public:
 "	font: 12pt \"Arial\";\n"
 "\n"
 "color:#2b547d;}"));
-        signup_btn = new QPushButton(centralwidget);
-        signup_btn->setObjectName("signup_btn");
-        signup_btn->setGeometry(QRect(500, 80, 111, 31));
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("Microsoft Sans Serif")});
-        font1.setPointSize(12);
-        font1.setBold(false);
-        font1.setItalic(false);
-        signup_btn->setFont(font1);
-        signup_btn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"background-color:#3499db;\n"
-"color:white;\n"
-"border-radius:15px;\n"
-"padding:7px 14px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgb(41, 128, 185);\n"
-"}\n"
-"QPushButton:pressed{\n"
-"background-color:rgb(31, 97, 141);\n"
-"}"));
-        login_btn = new QPushButton(centralwidget);
-        login_btn->setObjectName("login_btn");
-        login_btn->setGeometry(QRect(400, 400, 101, 31));
-        login_btn->setFont(font1);
-        login_btn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"background-color:#2b547d;\n"
-"color:white;\n"
-"border-radius:15px;\n"
-"padding:7px 14px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgb(41, 128, 185);\n"
-"}\n"
-"QPushButton:pressed{\n"
-"background-color:rgb(31, 97, 141);\n"
-"}"));
+
+        gridLayout->addWidget(label_7, 1, 2, 1, 1);
+
         gmail_input = new QLineEdit(centralwidget);
         gmail_input->setObjectName("gmail_input");
-        gmail_input->setGeometry(QRect(260, 160, 371, 51));
-        QFont font2;
-        font2.setPointSize(14);
-        gmail_input->setFont(font2);
+        QFont font1;
+        font1.setPointSize(14);
+        gmail_input->setFont(font1);
         gmail_input->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -169,10 +103,41 @@ public:
 "background-color:white;\n"
 "outline:none;\n"
 "}"));
+
+        gridLayout->addWidget(gmail_input, 5, 2, 1, 1);
+
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName("label_2");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy);
+        label_2->setMinimumSize(QSize(300, 0));
+        label_2->setStyleSheet(QString::fromUtf8("background-color:#3499db;"));
+
+        gridLayout->addWidget(label_2, 0, 0, 13, 2);
+
+        label_6 = new QLabel(centralwidget);
+        label_6->setObjectName("label_6");
+        label_6->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"background-color:white;\n"
+"font: 700 20pt \"Arial\";\n"
+"color:#2b547d;}"));
+
+        gridLayout->addWidget(label_6, 0, 2, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 3, 4, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout->addItem(verticalSpacer, 6, 2, 1, 1);
+
         password_input = new QLineEdit(centralwidget);
         password_input->setObjectName("password_input");
-        password_input->setGeometry(QRect(260, 230, 371, 51));
-        password_input->setFont(font2);
+        password_input->setFont(font1);
         password_input->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -191,55 +156,67 @@ public:
 "outline:none;\n"
 "}"));
         password_input->setEchoMode(QLineEdit::EchoMode::Password);
-        label_11 = new QLabel(centralwidget);
-        label_11->setObjectName("label_11");
-        label_11->setEnabled(true);
-        label_11->setGeometry(QRect(40, 140, 181, 151));
-        label_11->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/wmremove-transformed.png")));
-        label_11->setScaledContents(true);
-        label_12 = new QLabel(centralwidget);
-        label_12->setObjectName("label_12");
-        label_12->setGeometry(QRect(10, 460, 51, 51));
-        label_12->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/wmremove-transformed.png")));
-        label_12->setScaledContents(true);
-        label_13 = new QLabel(centralwidget);
-        label_13->setObjectName("label_13");
-        label_13->setGeometry(QRect(660, 10, 51, 51));
-        label_13->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/wmremove-transformed.png")));
-        label_13->setScaledContents(true);
-        label_8 = new QLabel(centralwidget);
-        label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(270, 240, 31, 31));
-        label_8->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"	background-color: none;\n"
+
+        gridLayout->addWidget(password_input, 7, 2, 1, 2);
+
+        widget_2 = new QWidget(centralwidget);
+        widget_2->setObjectName("widget_2");
+        signup_btn = new QPushButton(widget_2);
+        signup_btn->setObjectName("signup_btn");
+        signup_btn->setGeometry(QRect(0, 0, 111, 31));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Microsoft Sans Serif")});
+        font2.setPointSize(12);
+        font2.setBold(false);
+        font2.setItalic(false);
+        signup_btn->setFont(font2);
+        signup_btn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:#3499db;\n"
+"color:white;\n"
+"border-radius:15px;\n"
+"padding:7px 14px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:rgb(41, 128, 185);\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:rgb(31, 97, 141);\n"
 "}"));
-        label_8->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/padlock.png")));
-        label_8->setScaledContents(true);
-        label_10 = new QLabel(centralwidget);
-        label_10->setObjectName("label_10");
-        label_10->setGeometry(QRect(270, 170, 31, 31));
-        label_10->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"	background-color: none;\n"
+
+        gridLayout->addWidget(widget_2, 2, 2, 1, 1);
+
+        widget_3 = new QWidget(centralwidget);
+        widget_3->setObjectName("widget_3");
+        login_btn = new QPushButton(widget_3);
+        login_btn->setObjectName("login_btn");
+        login_btn->setGeometry(QRect(0, 0, 101, 31));
+        login_btn->setFont(font2);
+        login_btn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:#2b547d;\n"
+"color:white;\n"
+"border-radius:15px;\n"
+"padding:7px 14px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:rgb(41, 128, 185);\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:rgb(31, 97, 141);\n"
 "}"));
-        label_10->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/mail.png")));
-        label_10->setScaledContents(true);
+
+        gridLayout->addWidget(widget_3, 9, 2, 1, 1);
+
+
+        horizontalLayout->addLayout(gridLayout);
+
         MainWindowofBANK->setCentralWidget(centralwidget);
-        label->raise();
-        label_4->raise();
-        label_5->raise();
         label_6->raise();
         label_7->raise();
-        signup_btn->raise();
-        login_btn->raise();
         password_input->raise();
-        label_2->raise();
-        label_11->raise();
-        label_12->raise();
         gmail_input->raise();
-        label_3->raise();
-        label_13->raise();
-        label_8->raise();
-        label_10->raise();
+        widget_2->raise();
+        widget_3->raise();
+        label_2->raise();
         menubar = new QMenuBar(MainWindowofBANK);
         menubar->setObjectName("menubar");
         menubar->setEnabled(false);
@@ -248,11 +225,11 @@ public:
         statusbar = new QStatusBar(MainWindowofBANK);
         statusbar->setObjectName("statusbar");
         statusbar->setEnabled(false);
-        QSizePolicy sizePolicy(QSizePolicy::Policy::MinimumExpanding, QSizePolicy::Policy::MinimumExpanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(statusbar->sizePolicy().hasHeightForWidth());
-        statusbar->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::MinimumExpanding, QSizePolicy::Policy::MinimumExpanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(statusbar->sizePolicy().hasHeightForWidth());
+        statusbar->setSizePolicy(sizePolicy1);
         statusbar->setMaximumSize(QSize(0, 16777215));
         statusbar->setAcceptDrops(true);
         MainWindowofBANK->setStatusBar(statusbar);
@@ -265,22 +242,13 @@ public:
     void retranslateUi(QMainWindow *MainWindowofBANK)
     {
         MainWindowofBANK->setWindowTitle(QCoreApplication::translate("MainWindowofBANK", "Login ", nullptr));
-        label->setText(QString());
-        label_3->setText(QString());
-        label_4->setText(QString());
-        label_2->setText(QString());
-        label_5->setText(QString());
-        label_6->setText(QCoreApplication::translate("MainWindowofBANK", "  Welcome to Islamic Bank", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindowofBANK", "Don't Have an account yet?", nullptr));
+        gmail_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "Email", nullptr));
+        label_2->setText(QString());
+        label_6->setText(QCoreApplication::translate("MainWindowofBANK", "Welcome to Islamic Bank", nullptr));
+        password_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "Password", nullptr));
         signup_btn->setText(QCoreApplication::translate("MainWindowofBANK", "SIGN UP", nullptr));
         login_btn->setText(QCoreApplication::translate("MainWindowofBANK", "LOG IN", nullptr));
-        gmail_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "Email", nullptr));
-        password_input->setPlaceholderText(QCoreApplication::translate("MainWindowofBANK", "Password", nullptr));
-        label_11->setText(QString());
-        label_12->setText(QString());
-        label_13->setText(QString());
-        label_8->setText(QString());
-        label_10->setText(QString());
     } // retranslateUi
 
 };

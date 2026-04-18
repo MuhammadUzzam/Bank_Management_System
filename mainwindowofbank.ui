@@ -29,161 +29,190 @@ QMessageBox QLabel {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>731</width>
-      <height>521</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-background-color:rgb(199, 201, 213);
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>0</y>
-      <width>81</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-background-color:#2b547d;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>-10</x>
-      <y>440</y>
-      <width>81</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-background-color:#2b547d;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>201</width>
-      <height>471</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:10px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>20</y>
-      <width>491</width>
-      <height>471</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-background-color:rgb(255, 255, 255);
-border-radius:10px;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>40</y>
-      <width>371</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-background-color:white;
-font: 700 20pt &quot;Arial&quot;;
-color:#2b547d;}</string>
-    </property>
-    <property name="text">
-     <string>  Welcome to Islamic Bank</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>90</y>
-      <width>201</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
+   <property name="styleSheet">
+    <string notr="true">background-color:white;</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+      </property>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_7">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 background-color:rgb(255, 255, 255);
 	font: 12pt &quot;Arial&quot;;
 
 color:#2b547d;}</string>
-    </property>
-    <property name="text">
-     <string>Don't Have an account yet?</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="signup_btn">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>80</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft Sans Serif</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
+        </property>
+        <property name="text">
+         <string>Don't Have an account yet?</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLineEdit" name="gmail_input">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+
+background-color: rgb(255, 255, 255);
+color:rgb(43, 84, 125);
+border:2px solid rgb(43, 84, 125);
+padding:5px;
+padding-left:45px;
+}
+QLineEdit:hover{
+border:2px solid rgb(29, 61, 92);
+background-color:rgb(226, 230, 235);
+}
+QLineEdit:focus{
+border:2px solid rgb(0, 0, 119);
+background-color:white;
+outline:none;
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>Email</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" rowspan="13" colspan="2">
+       <widget class="QLabel" name="label_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#3499db;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_6">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+background-color:white;
+font: 700 20pt &quot;Arial&quot;;
+color:#2b547d;}</string>
+        </property>
+        <property name="text">
+         <string>Welcome to Islamic Bank</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Policy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="6" column="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Policy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="7" column="2" colspan="2">
+       <widget class="QLineEdit" name="password_input">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+
+background-color: rgb(255, 255, 255);
+color:rgb(43, 84, 125);
+border:2px solid rgb(43, 84, 125);
+padding:5px;
+padding-left:45px;
+}
+QLineEdit:hover{
+border:2px solid rgb(29, 61, 92);
+background-color:rgb(226, 230, 235);
+}
+QLineEdit:focus{
+border:2px solid rgb(0, 0, 119);
+background-color:white;
+outline:none;
+}</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QWidget" name="widget_2" native="true">
+        <widget class="QPushButton" name="signup_btn">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft Sans Serif</family>
+           <pointsize>12</pointsize>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
 background-color:#3499db;
 color:white;
 border-radius:15px;
@@ -195,30 +224,34 @@ background-color:rgb(41, 128, 185);
 QPushButton:pressed{
 background-color:rgb(31, 97, 141);
 }</string>
-    </property>
-    <property name="text">
-     <string>SIGN UP</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="login_btn">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>400</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft Sans Serif</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
+         </property>
+         <property name="text">
+          <string>SIGN UP</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="9" column="2">
+       <widget class="QWidget" name="widget_3" native="true">
+        <widget class="QPushButton" name="login_btn">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>101</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft Sans Serif</family>
+           <pointsize>12</pointsize>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
 background-color:#2b547d;
 color:white;
 border-radius:15px;
@@ -230,212 +263,23 @@ background-color:rgb(41, 128, 185);
 QPushButton:pressed{
 background-color:rgb(31, 97, 141);
 }</string>
-    </property>
-    <property name="text">
-     <string>LOG IN</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="gmail_input">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>160</y>
-      <width>371</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-
-background-color: rgb(255, 255, 255);
-color:rgb(43, 84, 125);
-border:2px solid rgb(43, 84, 125);
-padding:5px;
-padding-left:45px;
-}
-QLineEdit:hover{
-border:2px solid rgb(29, 61, 92);
-background-color:rgb(226, 230, 235);
-}
-QLineEdit:focus{
-border:2px solid rgb(0, 0, 119);
-background-color:white;
-outline:none;
-}</string>
-    </property>
-    <property name="placeholderText">
-     <string>Email</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="password_input">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>230</y>
-      <width>371</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-
-background-color: rgb(255, 255, 255);
-color:rgb(43, 84, 125);
-border:2px solid rgb(43, 84, 125);
-padding:5px;
-padding-left:45px;
-}
-QLineEdit:hover{
-border:2px solid rgb(29, 61, 92);
-background-color:rgb(226, 230, 235);
-}
-QLineEdit:focus{
-border:2px solid rgb(0, 0, 119);
-background-color:white;
-outline:none;
-}</string>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::EchoMode::Password</enum>
-    </property>
-    <property name="placeholderText">
-     <string>Password</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>140</y>
-      <width>181</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images.qrc">:/new/prefix1/images/wmremove-transformed.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>460</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images.qrc">:/new/prefix1/images/wmremove-transformed.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>10</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images.qrc">:/new/prefix1/images/wmremove-transformed.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>240</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	background-color: none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images.qrc">:/new/prefix1/images/padlock.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>170</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	background-color: none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images.qrc">:/new/prefix1/images/mail.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <zorder>label</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
+         </property>
+         <property name="text">
+          <string>LOG IN</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
    <zorder>label_6</zorder>
    <zorder>label_7</zorder>
-   <zorder>signup_btn</zorder>
-   <zorder>login_btn</zorder>
    <zorder>password_input</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_11</zorder>
-   <zorder>label_12</zorder>
    <zorder>gmail_input</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_13</zorder>
-   <zorder>label_8</zorder>
-   <zorder>label_10</zorder>
+   <zorder>widget_2</zorder>
+   <zorder>widget_3</zorder>
+   <zorder>label_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">
@@ -471,8 +315,6 @@ outline:none;
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="images.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

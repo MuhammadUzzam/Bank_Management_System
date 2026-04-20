@@ -12,79 +12,64 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_DepositDialog
 {
 public:
+    QHBoxLayout *horizontalLayout_2;
+    QHBoxLayout *horizontalLayout;
     QLabel *label_3;
-    QLabel *label_11;
-    QLabel *label_4;
-    QLabel *label_16;
-    QLabel *label_7;
-    QLabel *label_17;
-    QLabel *label_8;
+    QVBoxLayout *verticalLayout;
     QLabel *label;
     QLineEdit *amount_input;
+    QWidget *widget;
     QPushButton *deposit_confirmation_btn;
-    QLabel *label_2;
 
     void setupUi(QDialog *DepositDialog)
     {
         if (DepositDialog->objectName().isEmpty())
             DepositDialog->setObjectName("DepositDialog");
         DepositDialog->resize(478, 367);
+        DepositDialog->setStyleSheet(QString::fromUtf8("background-color:white;"));
+        horizontalLayout_2 = new QHBoxLayout(DepositDialog);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName("horizontalLayout");
         label_3 = new QLabel(DepositDialog);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(60, 30, 111, 301));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy);
         label_3->setStyleSheet(QString::fromUtf8("border-radius:10px;\n"
 "background-color:#2b547d;"));
-        label_11 = new QLabel(DepositDialog);
-        label_11->setObjectName("label_11");
-        label_11->setGeometry(QRect(70, 130, 91, 91));
-        label_11->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/wmremove-transformed.png")));
-        label_11->setScaledContents(true);
-        label_4 = new QLabel(DepositDialog);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(170, 30, 261, 301));
-        label_4->setStyleSheet(QString::fromUtf8("border-radius:10px;\n"
-"background-color:white;"));
-        label_16 = new QLabel(DepositDialog);
-        label_16->setObjectName("label_16");
-        label_16->setGeometry(QRect(10, 310, 51, 51));
-        label_16->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/wmremove-transformed.png")));
-        label_16->setScaledContents(true);
-        label_7 = new QLabel(DepositDialog);
-        label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(-10, 300, 81, 91));
-        label_7->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:#2b547d;\n"
-"}"));
-        label_17 = new QLabel(DepositDialog);
-        label_17->setObjectName("label_17");
-        label_17->setGeometry(QRect(420, 10, 51, 51));
-        label_17->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/wmremove-transformed.png")));
-        label_17->setScaledContents(true);
-        label_8 = new QLabel(DepositDialog);
-        label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(410, -10, 81, 81));
-        label_8->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color:#2b547d;\n"
-"}"));
+
+        horizontalLayout->addWidget(label_3);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(DepositDialog);
         label->setObjectName("label");
-        label->setGeometry(QRect(190, 50, 211, 71));
         label->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "background-color:none;\n"
 "font: 700 20pt \"Arial\";\n"
 "color:#2b547d;}"));
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label);
+
         amount_input = new QLineEdit(DepositDialog);
         amount_input->setObjectName("amount_input");
-        amount_input->setGeometry(QRect(240, 180, 181, 41));
+        amount_input->setMinimumSize(QSize(0, 30));
         QFont font;
         font.setFamilies({QString::fromUtf8("Microsoft Sans Serif")});
         font.setPointSize(12);
@@ -105,9 +90,19 @@ public:
 "background-color:white;\n"
 "outline:none;\n"
 "}"));
-        deposit_confirmation_btn = new QPushButton(DepositDialog);
+
+        verticalLayout->addWidget(amount_input);
+
+        widget = new QWidget(DepositDialog);
+        widget->setObjectName("widget");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy1);
+        deposit_confirmation_btn = new QPushButton(widget);
         deposit_confirmation_btn->setObjectName("deposit_confirmation_btn");
-        deposit_confirmation_btn->setGeometry(QRect(270, 280, 80, 24));
+        deposit_confirmation_btn->setGeometry(QRect(10, 30, 91, 24));
         deposit_confirmation_btn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "background-color:#2b547d;\n"
 "color:white;\n"
@@ -120,23 +115,15 @@ public:
 "QPushButton:pressed{\n"
 "background-color:rgb(31, 97, 141);\n"
 "}"));
-        label_2 = new QLabel(DepositDialog);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(180, 180, 51, 41));
-        label_2->setStyleSheet(QString::fromUtf8("background-color: none;"));
-        label_2->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/deposit_17765295.png")));
-        label_2->setScaledContents(true);
-        label_3->raise();
-        label_11->raise();
-        label_4->raise();
-        label_7->raise();
-        label_16->raise();
-        label_8->raise();
-        label_17->raise();
-        label->raise();
-        amount_input->raise();
-        deposit_confirmation_btn->raise();
-        label_2->raise();
+
+        verticalLayout->addWidget(widget);
+
+
+        horizontalLayout->addLayout(verticalLayout);
+
+
+        horizontalLayout_2->addLayout(horizontalLayout);
+
 
         retranslateUi(DepositDialog);
 
@@ -147,16 +134,9 @@ public:
     {
         DepositDialog->setWindowTitle(QCoreApplication::translate("DepositDialog", "Deposit", nullptr));
         label_3->setText(QString());
-        label_11->setText(QString());
-        label_4->setText(QString());
-        label_16->setText(QString());
-        label_7->setText(QString());
-        label_17->setText(QString());
-        label_8->setText(QString());
         label->setText(QCoreApplication::translate("DepositDialog", "Deposit Money", nullptr));
         amount_input->setPlaceholderText(QCoreApplication::translate("DepositDialog", "Enter Amount e.g. 6500", nullptr));
-        deposit_confirmation_btn->setText(QCoreApplication::translate("DepositDialog", "Confirm", nullptr));
-        label_2->setText(QString());
+        deposit_confirmation_btn->setText(QCoreApplication::translate("DepositDialog", "CONFIRM", nullptr));
     } // retranslateUi
 
 };

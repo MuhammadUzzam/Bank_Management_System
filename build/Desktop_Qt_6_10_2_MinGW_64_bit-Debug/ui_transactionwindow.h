@@ -11,12 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,9 +27,10 @@ class Ui_TransactionWindow
 {
 public:
     QWidget *centralwidget;
+    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout;
     QLabel *label_2;
     QTableWidget *transaction_table;
-    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -36,11 +39,15 @@ public:
         if (TransactionWindow->objectName().isEmpty())
             TransactionWindow->setObjectName("TransactionWindow");
         TransactionWindow->resize(723, 570);
+        TransactionWindow->setStyleSheet(QString::fromUtf8("background-color:white;"));
         centralwidget = new QWidget(TransactionWindow);
         centralwidget->setObjectName("centralwidget");
+        horizontalLayout = new QHBoxLayout(centralwidget);
+        horizontalLayout->setObjectName("horizontalLayout");
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(110, 20, 361, 71));
         QFont font;
         font.setFamilies({QString::fromUtf8("Arial")});
         font.setPointSize(25);
@@ -51,6 +58,9 @@ public:
 "background-color:none;\n"
 "font: 700 25pt \"Arial\";\n"
 "color:#2b547d;}"));
+
+        verticalLayout->addWidget(label_2);
+
         transaction_table = new QTableWidget(centralwidget);
         if (transaction_table->columnCount() < 3)
             transaction_table->setColumnCount(3);
@@ -61,7 +71,6 @@ public:
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         transaction_table->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         transaction_table->setObjectName("transaction_table");
-        transaction_table->setGeometry(QRect(0, 100, 721, 441));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft Sans Serif")});
         transaction_table->setFont(font1);
@@ -101,12 +110,12 @@ public:
         transaction_table->verticalHeader()->setCascadingSectionResizes(false);
         transaction_table->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         transaction_table->verticalHeader()->setStretchLastSection(false);
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(610, 10, 91, 81));
-        label->setStyleSheet(QString::fromUtf8("background-color:none;"));
-        label->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/transaction.png")));
-        label->setScaledContents(true);
+
+        verticalLayout->addWidget(transaction_table);
+
+
+        horizontalLayout->addLayout(verticalLayout);
+
         TransactionWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(TransactionWindow);
         menubar->setObjectName("menubar");
@@ -131,7 +140,6 @@ public:
         ___qtablewidgetitem1->setText(QCoreApplication::translate("TransactionWindow", "Amount", nullptr));
         QTableWidgetItem *___qtablewidgetitem2 = transaction_table->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QCoreApplication::translate("TransactionWindow", "Date", nullptr));
-        label->setText(QString());
     } // retranslateUi
 
 };

@@ -1,0 +1,5 @@
+In this guide, Hazrat explains the steps to create a database and connect it to Qt.
+
+1. The file main-database-queries.sql contains the required SQL Workbench queries to create the database.
+2. Connect the database using ODBC Data Source as shown in the video (link shared on the WhatsApp group).
+3. You’re done.

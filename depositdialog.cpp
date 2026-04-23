@@ -15,7 +15,6 @@ void DepositDialog::on_deposit_confirmation_btn_clicked()
 {
     bool ok;
     double amount = ui->amount_input->text().toDouble(&ok);
-
     if (amount < 1000) {
         QMessageBox::warning(this, "Invalid Amount", "Please enter an amount atleast 1000 PKR.");
         return; // Don't close the dialog

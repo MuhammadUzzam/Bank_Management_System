@@ -46,8 +46,12 @@ void signupwindow::on_backbtn_clicked()
 void signupwindow::on_createbtn_clicked()
 {
     bool check;
-
-    QString accountType = ui->acctype->currentText().split(" ").first();
+    QString rawType = ui->acctype->currentText();
+    QString accountType;
+    if (rawType.contains("Saving", Qt::CaseInsensitive))
+        accountType = "savings";
+    else
+        accountType = "current";
     QString fname = ui->firstname->text();
     QString lname = ui->lastname->text();
     QString email = ui->email->text();
@@ -57,43 +61,40 @@ void signupwindow::on_createbtn_clicked()
     QString contact = ui->phone->text();
     QString street = ui->street->text();
     QString city = ui->city->text();
-    QString branchid = ui->branch->text();
+    int branchid = ui->branch->text().toInt();
     QString postalcode = ui->postalcode->text();
     double initialbalance = ui->initialbalance->text().toDouble(&check);
-
     // validations
-    if(fname.isEmpty() || lname.isEmpty() || postalcode.isEmpty() || email.isEmpty() || pin.isEmpty() || confirm_pin.isEmpty() || city.isEmpty() || cnic.isEmpty() || contact.isEmpty() || street.isEmpty()) {
+    if(fname.isEmpty() || lname.isEmpty() || postalcode.isEmpty() || email.isEmpty() ||
+        pin.isEmpty() || confirm_pin.isEmpty() || city.isEmpty() || cnic.isEmpty() ||
+        contact.isEmpty() || street.isEmpty()) {
         QMessageBox::critical(this, "Error", "Fields cannot be empty");
         return;
     }
-
+    if(!isValidEmail(email)) {
+        QMessageBox::critical(this, "Error", "Invalid email format");
+        return;
+    }
     if(!check) {
         QMessageBox::critical(this, "Error", "Invalid balance");
         return;
     }
-
     if(pin != confirm_pin) {
         QMessageBox::critical(this, "Error", "Passwords do not match");
         return;
     }
-
     QSqlDatabase db = QSqlDatabase::database();
-
     if(!db.isOpen()) {
         QMessageBox::critical(this, "DB Error", "Database not open");
         return;
     }
-
-    db.transaction(); // 🔥 safety
-
+    db.transaction();
     QSqlQuery query;
-
-    // 1️⃣ INSERT INTO CUSTOMER
+    // INSERT CUSTOMER
     query.prepare(
         "INSERT INTO customer (first_name, last_name, email, password, cnic, phone, street, city, postal_code) "
         "VALUES (:firstname, :lastname, :email, :password, :cnic, :phone, :street, :city, :postalcode)"
     );
-
     query.bindValue(":firstname", fname);
     query.bindValue(":lastname", lname);
     query.bindValue(":email", email);
@@ -102,46 +103,40 @@ void signupwindow::on_createbtn_clicked()
     query.bindValue(":phone", contact);
     query.bindValue(":street", street);
     query.bindValue(":city", city);
-    query.bindValue(":city", postalcode);
-
-
+    query.bindValue(":postalcode", postalcode);
     if(!query.exec()) {
         db.rollback();
-        QMessageBox::critical(this, "Error", query.lastError().text());
+        if(query.lastError().text().contains("cnic")) {
+            QMessageBox::critical(this, "Error", "CNIC already exists!");
+        } else {
+            QMessageBox::critical(this, "Error", query.lastError().text());
+        }
         return;
     }
-
-    // 2️⃣ GET CUSTOMER ID
     int customer_id = query.lastInsertId().toInt();
-
-    // 3️⃣ GENERATE ACCOUNT NUMBER
+    // GENERATE ACCOUNT NUMBER
     QString generatedAccountNumber = generateAccountNumber("ACC");
-
-    // 4️⃣ INSERT INTO ACCOUNT
+    // INSERT ACCOUNT
     query.prepare(
         "INSERT INTO account (account_type, balance, account_number, customer_id, branch_id, open_date) "
         "VALUES (:type, :balance, :acc_no, :cid, :bid, CURDATE())"
     );
-
     query.bindValue(":type", accountType);
     query.bindValue(":balance", initialbalance);
     query.bindValue(":acc_no", generatedAccountNumber);
     query.bindValue(":cid", customer_id);
     query.bindValue(":bid", branchid);
-
     if(!query.exec()) {
         db.rollback();
         QMessageBox::critical(this, "Error", query.lastError().text());
         return;
     }
-
-    db.commit(); // 🔥 success
-
+    db.commit();
     QMessageBox::information(this, "Success", "Account created successfully!");
-
     // clear UI
     ui->acctype->setCurrentIndex(0);
     ui->firstname->clear();
+    ui->lastname->clear();
     ui->email->clear();
     ui->password->clear();
     ui->confirmpassword->clear();
@@ -152,7 +147,6 @@ void signupwindow::on_createbtn_clicked()
     ui->city->clear();
     ui->postalcode->clear();
     ui->branch->clear();
-
     // open dashboard
     central = new Centralwindow(this);
     central->setUserDetails(fname, email, accountType, initialbalance, generatedAccountNumber);

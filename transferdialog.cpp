@@ -16,7 +16,6 @@ void TransferDialog::on_transfer_confirmation_btn_clicked()
     recipientEmail = ui->email_input->text().trimmed();
     bool ok;
     transferAmount = ui->amount_input->text().toDouble(&ok);
-
     if (recipientEmail.isEmpty() || !ok )
     {
         QMessageBox::warning(this, "Invalid Input", "Please enter the email.");

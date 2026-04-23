@@ -16,7 +16,7 @@ MainWindowofBANK::MainWindowofBANK(QWidget *parent)
     ui->setupUi(this);
     // Avoid adding a duplicate database connection
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("my_banking_system"); // ye DSN name hai jo abhi banaya
+    db.setDatabaseName("Islamic_bank"); // ye DSN name hai jo abhi banaya
     if(db.open()) {
         qDebug() << "Connected to MySQL via ODBC!";
     } else {
@@ -60,7 +60,7 @@ void MainWindowofBANK::on_login_btn_clicked()
         "FROM customer c "
         "JOIN account a ON c.customer_id = a.customer_id "
         "WHERE c.email = :email AND c.password = :pin"
-        );
+    );
     query.bindValue(":email", email);
     query.bindValue(":pin", pin);
     if(!query.exec()) {

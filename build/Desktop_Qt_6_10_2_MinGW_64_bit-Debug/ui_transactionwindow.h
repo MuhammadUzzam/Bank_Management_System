@@ -39,9 +39,10 @@ public:
         if (TransactionWindow->objectName().isEmpty())
             TransactionWindow->setObjectName("TransactionWindow");
         TransactionWindow->resize(723, 570);
-        TransactionWindow->setStyleSheet(QString::fromUtf8("background-color:white;"));
+        TransactionWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(TransactionWindow);
         centralwidget->setObjectName("centralwidget");
+        centralwidget->setStyleSheet(QString::fromUtf8("background-color:white;"));
         horizontalLayout = new QHBoxLayout(centralwidget);
         horizontalLayout->setObjectName("horizontalLayout");
         verticalLayout = new QVBoxLayout();
